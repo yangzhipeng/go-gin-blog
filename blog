@@ -1,0 +1,86 @@
+-- --------------------------------------------------------
+-- 主机:                           localhost
+-- 服务器版本:                        5.7.24 - MySQL Community Server (GPL)
+-- 服务器OS:                        Win64
+-- HeidiSQL 版本:                  10.2.0.5599
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Dumping database structure for gin_blog
+DROP DATABASE IF EXISTS `gin_blog`;
+CREATE DATABASE IF NOT EXISTS `gin_blog` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `gin_blog`;
+
+-- Dumping structure for table gin_blog.blog_articles
+DROP TABLE IF EXISTS `blog_articles`;
+CREATE TABLE IF NOT EXISTS `blog_articles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned DEFAULT '0' COMMENT '创建人id',
+  `tag_id` int(10) unsigned DEFAULT '0' COMMENT '标签id',
+  `category_id` int(10) unsigned DEFAULT '0' COMMENT '分类id',
+  `status` tinyint(3) unsigned DEFAULT '1' COMMENT '状态:0禁用 1启用',
+  `title` varchar(100) DEFAULT '' COMMENT '文章标题',
+  `desc` varchar(255) DEFAULT '' COMMENT '描述',
+  `content` text,
+  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='文章表';
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table gin_blog.blog_categories
+DROP TABLE IF EXISTS `blog_categories`;
+CREATE TABLE IF NOT EXISTS `blog_categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) DEFAULT '' COMMENT '分类名',
+  `status` tinyint(3) unsigned DEFAULT '1' COMMENT '状态:0禁用 1启用',
+  `desc` varchar(255) DEFAULT '' COMMENT '描述',
+  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='分类表';
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table gin_blog.blog_tags
+DROP TABLE IF EXISTS `blog_tags`;
+CREATE TABLE IF NOT EXISTS `blog_tags` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) DEFAULT '' COMMENT '标签名',
+  `status` tinyint(3) unsigned DEFAULT '1' COMMENT '状态:0禁用 1启用',
+  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='标签表';
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table gin_blog.blog_users
+DROP TABLE IF EXISTS `blog_users`;
+CREATE TABLE IF NOT EXISTS `blog_users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT '' COMMENT '名字',
+  `password` varchar(200) DEFAULT '' COMMENT '密码',
+  `desc` varchar(255) DEFAULT '' COMMENT '描述',
+  `status` tinyint(3) unsigned DEFAULT '1' COMMENT '状态:0禁用 1启用',
+  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `deleted_at` timestamp NULL DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+-- Data exporting was unselected.
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
